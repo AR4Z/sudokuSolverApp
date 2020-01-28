@@ -1,4 +1,6 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:sudoku_solver/src/pages/scan_sudoku_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -23,8 +25,15 @@ class HomePage extends StatelessWidget {
               disabledTextColor: Colors.black,
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.blueAccent,
-              onPressed: () {
-                /*...*/
+              onPressed: () async {
+                final cameras = await availableCameras();
+
+                // Obtén una cámara específica de la lista de cámaras disponibles
+                final firstCamera = cameras.first;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ScanSudoku(camera: firstCamera)));
               },
               child: Text(
                 "Scan Sudoku",

@@ -10,6 +10,8 @@ class SudokuSolver extends StatelessWidget {
         title: 'Sudoku solver',
         initialRoute: 'home',
         debugShowCheckedModeBanner: false,
-        routes: {'home': (BuildContext context) => HomePage()});
+        routes: {
+          'home': (BuildContext context) => HomePage()
+        });
   }
 }
