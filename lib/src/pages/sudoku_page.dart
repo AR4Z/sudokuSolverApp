@@ -80,7 +80,7 @@ class _SudokuPageState extends State<SudokuPage> {
                 child: Container(
                   child: Center(
                     child: Text(
-                      '${index % 10}',
+                      '${index % 10 + 1}',
                       style: Theme.of(context).textTheme.headline,
                     ),
                   ),
@@ -88,12 +88,32 @@ class _SudokuPageState extends State<SudokuPage> {
                 onTap: () {
                   this.setState(() {
                     this._sudokuGrid[this._selectedCell.item1]
-                        [this._selectedCell.item2] = index % 10;
+                        [this._selectedCell.item2] = index % 10 + 1;
                   });
                 },
               );
             }),
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                child: RaisedButton(
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  padding: EdgeInsets.all(8.0),
+                  splashColor: Colors.blueAccent,
+                  child: Text("Solve sudoku", style: TextStyle(fontSize: 20.0)),
+                  onPressed: () {
+                    print('solve');
+                  },
+                ),
+              )
+            ],
+          )
         ],
       ),
     );
