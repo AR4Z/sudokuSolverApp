@@ -9,7 +9,7 @@ class SudokuSolver extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Sudoku solver',
-        initialRoute: 'sudoku',
+        initialRoute: 'home',
         debugShowCheckedModeBanner: false,
         routes: {
           'home': (BuildContext context) => HomePage(),

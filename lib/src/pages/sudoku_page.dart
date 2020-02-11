@@ -10,8 +10,6 @@ class SudokuPage extends StatefulWidget {
 class _SudokuPageState extends State<SudokuPage> {
   List<List<int>> _sudokuGrid;
   Tuple2<int, int> _selectedCell = Tuple2<int, int>(0, 0);
-  bool _showingSolution = false;
-  List<Tuple2<int, int>> _emptyCells = [];
 
   @override
   void initState() {
@@ -57,7 +55,7 @@ class _SudokuPageState extends State<SudokuPage> {
                     this.setState(() {
                       _selectedCell = Tuple2<int, int>(x, y);
                     });
-                  });
+                  },);
             }),
           ),
           SizedBox(
