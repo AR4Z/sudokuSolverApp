@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sudoku_solver/src/widgets/cell.dart';
 import 'package:tuple/tuple.dart';
 
 class SudokuPage extends StatefulWidget {
@@ -9,6 +10,8 @@ class SudokuPage extends StatefulWidget {
 class _SudokuPageState extends State<SudokuPage> {
   List<List<int>> _sudokuGrid;
   Tuple2<int, int> _selectedCell = Tuple2<int, int>(0, 0);
+  bool _showingSolution = false;
+  List<Tuple2<int, int>> _emptyCells = [];
 
   @override
   void initState() {
@@ -46,27 +49,15 @@ class _SudokuPageState extends State<SudokuPage> {
               x = (index / 9).floor();
               y = (index % 9);
 
-              return InkWell(
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 0.2),
-                      color: this._selectedCell.item1 == x &&
-                              this._selectedCell.item2 == y
-                          ? Colors.grey
-                          : Colors.white),
-                  child: Center(
-                    child: Text(
-                      '${this._sudokuGrid[x][y]}',
-                      style: Theme.of(context).textTheme.headline,
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  this.setState(() {
-                    this._selectedCell = Tuple2<int, int>(x, y);
+              return Cell(
+                  number: this._sudokuGrid[x][y],
+                  selected: this._selectedCell.item1 == x &&
+                      this._selectedCell.item2 == y,
+                  refresh_selected: () {
+                    this.setState(() {
+                      _selectedCell = Tuple2<int, int>(x, y);
+                    });
                   });
-                },
-              );
             }),
           ),
           SizedBox(
